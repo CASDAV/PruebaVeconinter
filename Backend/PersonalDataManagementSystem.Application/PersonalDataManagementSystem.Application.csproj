@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../PersonalDataManagementSystem.Domain/PersonalDataManagementSystem.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs/" />
+    <Folder Include="DTOs/Clients/" />
+    <Folder Include="DTOs/SubClients/" />
+    <Folder Include="Interfaces/" />
+    <Folder Include="Interfaces/BusinessObjects/" />
+    <Folder Include="UseCases/" />
+    <Folder Include="UseCases/Clients/" />
+    <Folder Include="UseCases/SubClients/" />
+  </ItemGroup>
+
+</Project>
