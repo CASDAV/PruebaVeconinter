@@ -29,10 +29,6 @@ internal class SubClientsRepository : ISubClientsRepository
             _context.SubClients.Remove(subClient);
             await _context.SaveChangesAsync();
         }
-        else
-        {
-            throw new InvalidOperationException("SubClient not found.");
-        }
     }
 
     public async Task<SubClient?> GetSubClientByIdAsync(Guid id)

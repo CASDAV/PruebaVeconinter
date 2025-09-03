@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using PersonalDataManagementSystem.Application.DTOs.SubClients;
@@ -8,6 +9,7 @@ namespace PersonalDataManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SubClientsController : ControllerBase
     {
 
@@ -28,7 +30,7 @@ namespace PersonalDataManagementSystem.API.Controllers
             _memoryCache = memoryCache;
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> CreateSubClient([FromBody] SubClientCreateDTO client)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -41,8 +43,8 @@ namespace PersonalDataManagementSystem.API.Controllers
             return Ok(await _create.ExecuteAsync(client));
         }
 
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> DeleteSubClient([FromQuery] Guid id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSubClient([FromRoute] Guid id)
         {
             if (_memoryCache.TryGetValue("SubClients", out _))
             {
@@ -54,8 +56,8 @@ namespace PersonalDataManagementSystem.API.Controllers
             return Ok();
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetSubClientById([FromQuery] Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSubClientById([FromRoute] Guid id)
         {
             var result = await _clientById.ExecuteAsync(id);
 

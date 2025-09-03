@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using PersonalDataManagementSystem.Application.Mapper;
 using PersonalDataManagementSystem.Application.UseCases.Commands.Clients;
 using PersonalDataManagementSystem.Application.UseCases.Commands.SubClients;
 using PersonalDataManagementSystem.Application.UseCases.Queries.Clients;
@@ -11,6 +12,8 @@ public static class ApplicationRegistration
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
 
+        services.AddAutoMapper(c => {},typeof(MappingProfile));
+
         services.AddScoped<CreateClient>();
         services.AddScoped<DeleteClient>();
         services.AddScoped<UpdateClient>();
@@ -21,7 +24,6 @@ public static class ApplicationRegistration
         services.AddScoped<UpdateSubClient>();
         services.AddScoped<GetSubClients>();
         services.AddScoped<GetSubClientById>();
-
 
         return services;
     }

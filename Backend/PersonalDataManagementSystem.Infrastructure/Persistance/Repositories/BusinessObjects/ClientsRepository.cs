@@ -30,10 +30,6 @@ internal class ClientsRepository : IClientsRepository
 
             await _context.SaveChangesAsync();
         }
-        else
-        {
-            throw new InvalidOperationException("Client to remove not found.");
-        }
     }
 
     public async Task<Client?> GetClientByIdAsync(Guid id)

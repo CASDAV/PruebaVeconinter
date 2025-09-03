@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using PersonalDataManagementSystem.Application.DTOs.Clients;
@@ -8,6 +9,7 @@ namespace PersonalDataManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class ClientsController : ControllerBase
     {
         private readonly CreateClient _create;
@@ -40,8 +42,8 @@ namespace PersonalDataManagementSystem.API.Controllers
             return Ok(await _create.ExecuteAsync(client));
         }
 
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> DeleteClient([FromQuery] Guid id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient([FromRoute] Guid id)
         {
             if (_memoryCache.TryGetValue("Clients", out _))
             {
@@ -53,8 +55,8 @@ namespace PersonalDataManagementSystem.API.Controllers
             return Ok();
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetClientById([FromQuery] Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClientById([FromRoute] Guid id)
         {
             var result = await _clientById.ExecuteAsync(id);
 

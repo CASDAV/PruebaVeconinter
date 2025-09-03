@@ -1,6 +1,16 @@
-@PersonalDataManagementSystem.API_HostAddress = http://localhost:5153
+@API_HostAddress = http://localhost:5153/api
 
-GET {{PersonalDataManagementSystem.API_HostAddress}}/weatherforecast/
+POST {{API_HostAddress}}/Authentication/login/
 Accept: application/json
+Content-Type: application/json
+
+{
+    "userName": "Takina",
+    "password": "takina"
+}
 
 ###
+
+GET {{API_HostAddress}}/Clients
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUYWtpbmEiLCJqdGkiOiI5NmVjNTEzYi02ZTdhLTQyNjUtYWY4ZC04MjFkZjU5NWEyODAiLCJ1bmlxdWVfbmFtZSI6IlRha2luYSIsIm5iZiI6MTc1NjkyNzc5OCwiZXhwIjoxNzU2OTI5NTk4LCJpYXQiOjE3NTY5Mjc3OTgsImlzcyI6IlBlcm9zbmFsRGF0YU1hbmFnZW1lbnRTeXN0ZW0iLCJhdWQiOiJQZXJvc25hbERhdGFNYW5hZ2VtZW50U3lzdGVtIn0.Z6SWBUYlzgri_TIkmSgLV68TBhPBEdq2n5NZndjUxko
+
