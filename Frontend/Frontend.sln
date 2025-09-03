@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDataManagementSystem.Front", "PersonalDataManagementSystem.Front\PersonalDataManagementSystem.Front.csproj", "{D06A9FDE-B67C-4821-A8D0-49471DB3DBDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDataManagementSystem.BackendClient", "PersonalDataManagementSystem.BackendClient\PersonalDataManagementSystem.BackendClient.csproj", "{2C19D63F-E8F2-41A4-A7BB-782DC20D4294}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D06A9FDE-B67C-4821-A8D0-49471DB3DBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D06A9FDE-B67C-4821-A8D0-49471DB3DBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D06A9FDE-B67C-4821-A8D0-49471DB3DBDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C19D63F-E8F2-41A4-A7BB-782DC20D4294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C19D63F-E8F2-41A4-A7BB-782DC20D4294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C19D63F-E8F2-41A4-A7BB-782DC20D4294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C19D63F-E8F2-41A4-A7BB-782DC20D4294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

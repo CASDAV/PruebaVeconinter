@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Caching.Memory;
 using PersonalDataManagementSystem.Application.DTOs.Clients;
 using PersonalDataManagementSystem.Application.UseCases.Commands.Clients;
@@ -30,6 +31,8 @@ namespace PersonalDataManagementSystem.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(ClientDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ModelStateDictionary), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateClient([FromBody] ClientCreateDTO client)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -56,6 +59,8 @@ namespace PersonalDataManagementSystem.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ClientDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetClientById([FromRoute] Guid id)
         {
             var result = await _clientById.ExecuteAsync(id);
@@ -66,6 +71,7 @@ namespace PersonalDataManagementSystem.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<ClientDTO>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetClients()
         {
             if (!_memoryCache.TryGetValue("Clients", out List<ClientDTO>? cachedItems))
@@ -88,9 +94,11 @@ namespace PersonalDataManagementSystem.API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(typeof(ClientDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ModelStateDictionary), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateClient([FromBody] ClientUpdateDTO client)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState.ToString());
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             if (_memoryCache.TryGetValue("Clients", out _))
             {

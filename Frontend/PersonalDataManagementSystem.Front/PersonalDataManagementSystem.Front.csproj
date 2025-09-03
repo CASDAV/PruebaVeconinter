@@ -6,4 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../PersonalDataManagementSystem.BackendClient/PersonalDataManagementSystem.BackendClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.8" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="8.0.0" />
+  </ItemGroup>
+
 </Project>

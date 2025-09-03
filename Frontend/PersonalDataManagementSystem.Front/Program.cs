@@ -1,3 +1,6 @@
+using PersonalDataManagementSystem.BackendClient;
+using PersonalDataManagementSystem.Front.Helpers;
+
 namespace PersonalDataManagementSystem.Front;
 
 public class Program
@@ -6,8 +9,27 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Logging.AddConsole().AddDebug();
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+
+        builder.Services.AddKiotaHandlers();
+
+        var apiUrl = builder.Configuration.GetValue<string>("BaseUrl") ?? throw new InvalidOperationException("BaseUrl element can not be found in the system configuration");
+
+        builder.Services.AddHttpClient<ApiClientFactory>((sp, http) =>
+        {
+            http.BaseAddress = new Uri(apiUrl);
+            http.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+        })
+        .AttachKiotaHandlers();
+
+        builder.Services.AddTransient( sp =>
+        {
+            var factory = sp.GetRequiredService<ApiClientFactory>();
+            return factory.GetClient();
+        });
 
         var app = builder.Build();
 

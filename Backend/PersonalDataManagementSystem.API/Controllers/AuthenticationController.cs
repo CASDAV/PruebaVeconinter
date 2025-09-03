@@ -19,9 +19,11 @@ namespace PersonalDataManagementSystem.API.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState.ToString());
 
             if (string.IsNullOrWhiteSpace(loginRequest.UserName) || string.IsNullOrWhiteSpace(loginRequest.Password)) return BadRequest("Empty Credentials");
 
@@ -30,7 +32,7 @@ namespace PersonalDataManagementSystem.API.Controllers
 
             var token = GenerateToken(loginRequest.UserName);
 
-            return Ok(new { AccessToken  = token });
+            return Ok(new { AccessToken = token });
         }
 
         private string GenerateToken(string userName)
