@@ -1,3 +1,5 @@
+using PersonalDataManagementSystem.Infrastructure;
+using PersonalDataManagementSystem.Application;
 
 namespace PersonalDataManagementSystem.API;
 
@@ -9,10 +11,15 @@ public class Program
 
         // Add services to the container.
 
+        builder.Services.AddInfrastructureServices(builder.Configuration);
+        builder.Services.AddApplicationServices();
+
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddMemoryCache();
 
         var app = builder.Build();
 
@@ -21,12 +28,16 @@ public class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler();
         }
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

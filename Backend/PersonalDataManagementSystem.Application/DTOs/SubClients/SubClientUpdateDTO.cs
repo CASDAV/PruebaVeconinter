@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalDataManagementSystem.Domain.Entities.BusinessObjects;
+namespace PersonalDataManagementSystem.Application.DTOs.SubClients;
 
-public class SubClient
+public class SubClientUpdateDTO
 {
-    [Key]
+    [Required]
     public Guid Id { get; set; }
 
     [Required]
@@ -12,6 +12,7 @@ public class SubClient
     public string Name { get; set; } = null!;
 
     [Required]
+    [EmailAddress]
     public string Email { get; set; } = null!;
 
     [Required]
@@ -19,6 +20,4 @@ public class SubClient
 
     [Required]
     public Guid ClientId { get; set; }
-
-    public virtual Client Client { get; set; } = null!;
 }

@@ -14,15 +14,4 @@
     <PackageReference Include="AutoMapper" Version="15.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs/" />
-    <Folder Include="DTOs/Clients/" />
-    <Folder Include="DTOs/SubClients/" />
-    <Folder Include="Interfaces/" />
-    <Folder Include="Interfaces/BusinessObjects/" />
-    <Folder Include="UseCases/" />
-    <Folder Include="UseCases/Clients/" />
-    <Folder Include="UseCases/SubClients/" />
-  </ItemGroup>
-
 </Project>
