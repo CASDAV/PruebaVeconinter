@@ -25,6 +25,9 @@
 > [!NOTE]
 > No utilice localhost como host de conexión con PostgresSQL, especialmenete en SO linux dado que intentara conectarse a la BD usando el usuario y las credenciales del usuario en el sistema operativo, en lugar de las credenciales nativas de la BD.
 
+> [!IMPORTANT]
+> Recuerde que nunca debe dejar credenciales (strings de conexión, URIs de APIs y otros) expuestas de esta manera, este proyecto solo es un ejemplo, en entronos reales utilice archivos no "trackeados" por el sistema de control de versiones (todos los que ponga explicitamente en el .gitignore), o use secretos locales, recuerde que para entronos de producción en nube y on-premise tambien existen secretos y otros metodos para garantizar el secreto.
+
 2. **Aplicar las migraciones**:
    - Navega al directorio `Backend/PersonalDataManagementSystem.API` en la terminal.
    - Ejecuta los siguientes comandos:
@@ -42,7 +45,7 @@
    - La API estará disponible en `http://localhost:5153`.
 
 2. **Frontend**:
-   - Navega al directorio [PersonalDataManagementSystem.Front](http://_vscodecontentref_/0).
+   - Navega al directorio `PersonalDataManagementSystem.Front`.
    - Ejecuta el siguiente comando:
      ```bash
      dotnet run
@@ -50,7 +53,8 @@
    - La aplicación estará disponible en `http://localhost:5158`.
 
 > [!NOTE]
-> Siempre y cuando se ejecute con la configuración HTTP, si se desea utilizar IISExpress o HTTPS recuerde configurar y validar sus sertificados autofrimados.
+> los puertos corresponderan siempre y cuando se ejecute con la configuración HTTP, si se desea utilizar IISExpress o HTTPS recuerde configurar y validar sus sertificados autofrimados.
+> En caso de ejecutar los projectos en otra configuración podria llegar a necesitar cambiar la Url en el archivo de configuración, de la solucón Front. 
 
 ---
 
@@ -76,3 +80,7 @@
      - Comandos: Commands
      - Consultas: Queries
    - **Descripción**: Este patrón separa las operaciones de escritura (comandos) de las de lectura (consultas), mejorando la escalabilidad y mantenibilidad.
+
+## Otros aspectos relevantes
+
+Este proyecto, en especifico la solución "Front" utiliza codigo autogenerado por una herramienta Kiota, esta herramienta producida por microsoft tiene como uso especifico generar "clientes" para consumir aplicaciones rest esto lo hace hacindo uso de un estandar conocido como OpenAPI.  
