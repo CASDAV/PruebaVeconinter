@@ -1,0 +1,18 @@
+﻿@page
+@model ClientsModel
+
+@(Html
+    .Grid(Model.BussinessClients)
+    .Build(columns =>{
+        columns.Add(c => c.Name).Titled("Name");
+        columns.Add(c => c.Company).Titled("Company");
+        columns.Add(c => c.Email).Titled("Email");
+        columns.Add(c => c.Telephone).Titled("Telephone");
+        columns.Add(c => c.Id);
+        columns.Add().Titled("Actions").RenderedAs(c => 
+            Html.ActionLink("Edit", "Edit", new { id = c.Id }).ToString()
+            + " | " +
+            Html.ActionLink("Delete", "Delete", new { id = c.Id }).ToString()
+        );
+    })
+)

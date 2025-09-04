@@ -1,3 +1,4 @@
+using Microsoft.Kiota.Abstractions.Authentication;
 using PersonalDataManagementSystem.BackendClient;
 using PersonalDataManagementSystem.Front.Helpers;
 
@@ -10,6 +11,10 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Logging.AddConsole().AddDebug();
+
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddSingleton<IAccessTokenProvider, SessionAccessTokenProvider>();
+
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
@@ -31,6 +36,8 @@ public class Program
             return factory.GetClient();
         });
 
+        builder.Services.AddSession();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -45,6 +52,8 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+
+        app.UseSession();
 
         app.UseAuthorization();
 
